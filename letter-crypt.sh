@@ -93,7 +93,7 @@ fi
 if [ "$operation" = "encrypt" ]; then
     encrypted=$(echo -n "$message" | openssl enc -aes-256-cbc -salt -iter 1000000 -pbkdf2 -pass pass:$password | xxd -p | tr -d '\n')
     if $paper; then
-        printf "\nWrite down this to a paper:\n\nTo decrypt the message, please remove any numbers like 1), 2), 3), etc., at the start of each line, as well as any whitespaces and line breaks. Once you have cleaned the input, run the following command:\n\necho \"<hex>\" | xxd -r -p | openssl enc -aes-256-cbc -d -salt -iter 1000000 -pbkdf2 -pass pass:<password>\n\nReplacing <hex> with the encrypted message and <password> with the password. Or use the script \"$cmd\" with the option --decrypt.\n\n\n"
+        printf "\nWrite down this to a paper:\n\nTo decrypt the message, please remove any numbers like 1), 2), 3), etc., at the start of each line, as well as any whitespaces and line breaks. Once you have cleaned the input, run the following command:\n\necho \"<hex>\" | xxd -r -p | openssl enc -aes-256-cbc -d -salt -iter 1000000 -pbkdf2 -pass pass:<password>\n\nReplacing <hex> with the encrypted message and <password> with the password. Or use the script letter-crypt with the option --decrypt.\n\n\n"
         echo "$encrypted" | fold -w4 | paste - - -d ' ' | awk '{printf("%4d) %s\n", NR, $0)}'
     else
         echo "$encrypted"
