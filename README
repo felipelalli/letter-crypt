@@ -1,0 +1,29 @@
+Encryption and Decryption Script
+
+This script provides a command-line interface for encrypting and decrypting messages using the AES-256-CBC encryption algorithm. It aims to facilitate the process of writing down encrypted messages on paper for secure communication.
+
+Usage:
+
+$ ./script.sh -e|--encrypt <password> [<msg>]   Encrypt a message.
+$ ./script.sh -d|--decrypt <password> [<msg>]   Decrypt a message.
+$ ./script.sh -h|--help                         Display this help message.
+$ ./script.sh -v|--version                      Display the version number.
+
+Options:
+
+- `-p|--paper-writable`: Formats the output for handwriting (default). This option breaks the encrypted message into four-digit chunks and numbers them, making it easier to transcribe onto paper.
+- `-m|--machine`: Outputs the result without formatting.
+- `--`: To separate the message in case it starts with '-'.
+
+Examples:
+
+1. Encrypt a message:
+   $ echo "This is a message" | ./script.sh -e mypassword
+
+2. Decrypt an encrypted message:
+   $ echo "53616c7465645f..." | ./script.sh -d mypassword
+
+3. Encrypt a message containing special characters:
+   $ ./script.sh -e mypassword -- -a
+
+Feel free to use and modify this script according to your requirements.
