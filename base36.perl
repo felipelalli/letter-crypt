@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use Math::BigInt;
 
-# Função para converter de hexadecimal para base36
+# Function to convert from hexadecimal to base36
 sub hex_to_base36 {
     my ($hex) = @_;
     my $bigint = Math::BigInt->from_hex($hex);
@@ -24,7 +24,7 @@ sub hex_to_base36 {
     return lc($base36);
 }
 
-# Função para converter de base36 para hexadecimal
+# Function to convert from base36 to hexadecimal
 sub base36_to_hex {
     my ($base36) = @_;
     my $bigint = Math::BigInt->new(0);
@@ -41,29 +41,29 @@ sub base36_to_hex {
     }
 
     my $hex = $bigint->as_hex();
-    $hex =~ s/^0x//i; # Remove o "0x" do início do número hexadecimal
+    $hex =~ s/^0x//i; # Remove the "0x" from the start of the hexadecimal number
     return lc($hex);
 }
 
-# Obtém o parâmetro passado via linha de comando
+# Get the parameter passed via command line
 my $input = $ARGV[0];
 
-# Verifica se o parâmetro foi fornecido
+# Check if the parameter was supplied
 if (defined $input) {
-    # Verifica se o parâmetro é um número hexadecimal
+    # Check if the parameter is a hexadecimal number
     if ($input =~ /^[0-9A-Fa-f]+$/) {
         my $base36 = hex_to_base36($input);
         print "$base36\n";
     }
-    # Verifica se o parâmetro é um número em base36
+    # Check if the parameter is a base36 number
     elsif ($input =~ /^[0-9A-Za-z]+$/) {
         my $hex = base36_to_hex($input);
         print "$hex\n";
     }
     else {
-        print "Formato inválido. Forneça um número hexadecimal ou base36.\n";
+        print "Invalid format. Please provide a hexadecimal or base36 number.\n";
     }
 }
 else {
-    print "Nenhum parâmetro fornecido. Forneça um número hexadecimal ou base36.\n";
+    print "No parameter supplied. Please provide a hexadecimal or base36 number.\n";
 }
