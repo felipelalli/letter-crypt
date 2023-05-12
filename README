@@ -13,6 +13,7 @@ Options:
 
 - `-p|--paper-writable`: Formats the output for handwriting (default). This option breaks the encrypted message into four-digit chunks and numbers them, making it easier to transcribe onto paper.
 - `-m|--machine`: Outputs the result without formatting.
+- `--base36`: Use base36 instead hexadecimal to save space.
 - `--`: To separate the message in case it starts with '-'.
 
 Examples:
