@@ -93,7 +93,16 @@ if [ -z "$operation" ] || [ -z "$password" ]; then
 fi
 
 if [ -z "$message" ]; then
-    read -d '' -r message
+    if [[ -t 0 ]]; then
+        printf "Type the message and press CTRL+D to finish:\n\n"
+
+        message=""
+        while IFS= read -r line || [[ -n "$line" ]]; do
+            message+=$line$'\n'
+        done
+    else
+        read -d '' -r message
+    fi
 fi
 
 if [ "$operation" = "encrypt" ]; then
