@@ -13,7 +13,7 @@ usage(){
     echo "Options:"
     echo "-p|--paper-writable                  Format output for handwriting (default)."
     echo "-m|--machine                         No formatting of the output."
-    echo "--base36                             Use base36 (a-z 0-9 lowercase) instead hexadecimal."
+    echo "-x|--hex|--hexadecimal               Use hexadecimal instead base36 (a-z 0-9 lowercase)."
     echo "--                                   To separate the message in case it starts with '-'."
     echo ""
     echo "Examples:"
@@ -34,7 +34,7 @@ paper=true
 operation=""
 password=""
 message=""
-base36=false
+base36=true
 
 while (( "$#" )); do
     case "$1" in
@@ -67,8 +67,8 @@ while (( "$#" )); do
         -m|--machine)
             paper=false
             ;;
-        --base36)
-            base36=true
+        -x|--hex|--hexadecimal)
+            base36=false
             ;;
         --)
             shift
